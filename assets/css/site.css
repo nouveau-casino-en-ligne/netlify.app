@@ -31,15 +31,11 @@ img{display:block;max-width:100%}
 main{max-width:var(--max);margin:0 auto;padding:24px 22px 74px}
 
 .hero{
-  min-height:410px;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 360px;
-  align-items:center;
-  gap:54px;
+  min-height:auto;
+  display:block;
   padding:clamp(42px,7vw,80px);
   background:linear-gradient(135deg,#fff 0,#e8eef5 100%);
   border:1px solid var(--line);
-  overflow:hidden;
   box-shadow:0 24px 64px rgba(19,43,74,.08);
 }
 .hero-copy{max-width:780px}
@@ -52,29 +48,6 @@ main{max-width:var(--max);margin:0 auto;padding:24px 22px 74px}
 }
 .hero p{max-width:700px;margin:23px 0 0;color:#657383;font-size:1.05rem}
 
-.hero-visual{
-  position:relative;
-  min-height:255px;
-}
-.hero-card{
-  position:absolute;
-  width:185px;
-  height:118px;
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  border:3px solid var(--navy);
-  border-radius:24px;
-  background:#fff;
-  box-shadow:0 18px 36px rgba(19,43,74,.12);
-}
-.hero-card span{color:var(--rose);font-size:.78rem;font-weight:900;letter-spacing:.08em}
-.hero-card strong{color:var(--navy);font-size:1.35rem}
-.hero-card-a{left:5px;top:14px}
-.hero-card-b{right:5px;top:62px;background:#e0e6ed}
-.hero-card-c{left:68px;bottom:2px;background:var(--navy);border-color:var(--navy)}
-.hero-card-c span,.hero-card-c strong{color:#fff}
 
 .toc{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 28px}
 .toc a{
@@ -127,11 +100,13 @@ main{max-width:var(--max);margin:0 auto;padding:24px 22px 74px}
 }
 .article-image img{
   display:block;
-  width:100%;
-  height:auto;
+  width:100% !important;
+  height:auto !important;
   max-width:100%;
-  object-fit:contain;
+  max-height:none !important;
+  object-fit:contain !important;
   object-position:center;
+  aspect-ratio:auto !important;
 }
 
 /* Dynamic comparison cards. No badges. */
@@ -144,7 +119,7 @@ main{max-width:var(--max);margin:0 auto;padding:24px 22px 74px}
 .compare-card{
   min-width:0;
   display:grid;
-  grid-template-rows:74px auto auto 46px;
+  grid-template-rows:auto auto auto 46px;
   gap:10px;
   padding:18px;
   background:#fff;
@@ -152,8 +127,26 @@ main{max-width:var(--max);margin:0 auto;padding:24px 22px 74px}
   border-bottom:5px solid var(--navy);
   box-shadow:0 10px 24px rgba(19,43,74,.07);
 }
-.logo-box{height:68px;display:grid;place-items:center;overflow:hidden;border-radius:12px}
-.logo-box img{width:82%;height:82%;object-fit:contain}
+.logo-box{
+  min-height:108px;
+  height:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+  overflow:visible;
+  border-radius:12px;
+}
+.logo-box img{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:84px;
+  object-fit:contain;
+  object-position:center;
+  flex:0 0 auto;
+}
 .brand{color:var(--navy);font-size:1.08rem;font-weight:900}
 .rating{display:flex;gap:7px;align-items:center;margin-top:4px;color:#7a838d;font-size:.8rem}
 .stars{--fill:100%;position:relative;color:#d5d9dd;letter-spacing:1px;font-size:14px}
@@ -166,7 +159,7 @@ main{max-width:var(--max);margin:0 auto;padding:24px 22px 74px}
 .affiliate-error{grid-column:1/-1;padding:17px;border:1px solid #d8dee5;background:#f4f7fa;color:#566575;text-align:center}
 .skeleton{position:relative;overflow:hidden;background:#e4eaf0}
 .skeleton::after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);animation:shimmer 1.2s infinite}
-.sk-logo{height:68px}.sk-name{height:44px}.sk-bonus{height:54px}.sk-button{height:46px}
+.sk-logo{height:108px}.sk-name{height:44px}.sk-bonus{height:54px}.sk-button{height:46px}
 @keyframes shimmer{100%{transform:translateX(100%)}}
 
 .footer{max-width:var(--max);margin:0 auto 28px;padding:25px 22px;display:flex;justify-content:space-between;gap:20px;background:var(--navy);color:#e9edf3}
@@ -181,13 +174,11 @@ main{max-width:var(--max);margin:0 auto;padding:24px 22px 74px}
 .utility-back{display:inline-block;margin-bottom:20px;color:var(--navy);font-weight:800;text-decoration:none}
 
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-  .hero-visual{display:none}
   .compare-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:650px){
   main{padding:14px 12px 50px}
-  .hero{min-height:320px;padding:34px 23px}
+  .hero{padding:34px 23px}
   .article{padding:22px 17px}
   .article table{display:block;overflow-x:auto}
   .compare-grid{grid-template-columns:1fr}

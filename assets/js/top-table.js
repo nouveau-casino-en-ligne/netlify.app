@@ -17,7 +17,7 @@ const render=rows=>{
     const logo=document.createElement('img');
     logo.src=String(item.logo_url||'');
     logo.alt=item.brand?'Logo '+String(item.brand):'Logo';
-    logo.loading=index<3?'eager':'lazy';
+    logo.loading='eager';
     logo.decoding='async';
     logoBox.appendChild(logo);
     card.appendChild(logoBox);
